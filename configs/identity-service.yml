@@ -1,15 +1,19 @@
-
 server:
   port: 8081
 
 spring:
   datasource:
-    url: ${MYSQLHOST}
+    url: ${MYSQLHOST}               # Railway MySQL host
     username: ${MYSQLUSER}
     password: ${MYSQLPASSWORD}
+    driver-class-name: com.mysql.cj.jdbc.Driver
   jpa:
     hibernate:
       ddl-auto: update
+    show-sql: false                 # disable SQL logging in prod
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQLDialect
 
   data:
     redis:
@@ -24,3 +28,9 @@ eureka:
   instance:
     hostname: ${RAILWAY_PRIVATE_DOMAIN}
     prefer-ip-address: false
+
+jwt:
+  private-key-path: classpath:keys/private.pem
+  public-key-path: classpath:keys/public.pem
+  access-token-expiry-ms: 604800000
+  refresh-token-expiry-seconds: 604800000
