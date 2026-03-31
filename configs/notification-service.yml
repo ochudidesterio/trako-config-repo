@@ -4,7 +4,7 @@ server:
 spring:
   data:
     mongodb:
-      uri: ${MONGODB_URI}
+      uri: ${MONGODB_URI}                # Railway MongoDB URI
       database: sales_notifications_db
 
   kafka:
@@ -15,6 +15,7 @@ spring:
       key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
       value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
     properties:
+      spring.json.trusted.packages: "*"
       security.protocol: SASL_SSL
       sasl.mechanism: SCRAM-SHA-256
       sasl.jaas.config: >
@@ -22,10 +23,7 @@ spring:
         username="${KAFKA_USERNAME}"
         password="${KAFKA_PASSWORD}";
 
-eureka:
-  client:
-    service-url:
-      defaultZone: ${EUREKA_URI}/eureka/
-  instance:
-    hostname: ${RAILWAY_PRIVATE_DOMAIN}
-    prefer-ip-address: false
+
+logging:
+  level:
+    org.springframework.boot.context.config: INFO
