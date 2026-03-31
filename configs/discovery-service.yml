@@ -1,0 +1,12 @@
+server:
+  port: 8761
+
+eureka:
+  instance:
+    hostname: ${RAILWAY_PRIVATE_DOMAIN}   # Railway service hostname
+    prefer-ip-address: false
+  client:
+    register-with-eureka: false
+    fetch-registry: false
+    service-url:
+      defaultZone: http://${RAILWAY_PRIVATE_DOMAIN}:${server.port}/eureka/
