@@ -1,6 +1,16 @@
 server:
   port: 8080
 
+jwt:
+  public-key-path: classpath:keys/public.pem
+  # secret: ${JWT_SECRET}   # secret for signing/verifying tokens
+
+gateway:
+  whitelist:
+    - /api/v1/auth/register
+    - /api/v1/auth/login
+    - /api/v1/auth/refresh
+
 eureka:
   client:
     service-url:
@@ -9,5 +19,19 @@ eureka:
     hostname: ${RAILWAY_PRIVATE_DOMAIN}
     prefer-ip-address: false
 
-jwt:
-  secret: ${JWT_SECRET}
+management:
+  tracing:
+    sampling:
+      probability: 1.0
+  endpoints:
+    web:
+      exposure:
+        include: health,info,gateway
+
+spring:
+  profiles: prod
+  data:
+    redis:
+      host: ${REDIS_HOST}
+      port: ${REDIS_PORT}
+      password: ${REDIS_PASSWORD}
