@@ -1,16 +1,13 @@
 server:
   port: 8082
-
 spring:
   datasource:
-    url: jdbc:postgresql://postgres.railway.internal:5432/sales-core-db
-
+    url: ${DATABASE_URL}
     username: ${PGUSER}
     password: ${PGPASSWORD}
   jpa:
     hibernate:
       ddl-auto: update
-
 eureka:
   client:
     service-url:
