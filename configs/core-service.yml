@@ -3,7 +3,8 @@ server:
 
 spring:
   datasource:
-    url: jdbc:${DATABASE_URL}
+    url: jdbc:postgresql://postgres.railway.internal:5432/sales-core-db
+
     username: ${PGUSER}
     password: ${PGPASSWORD}
   jpa:
