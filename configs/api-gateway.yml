@@ -29,7 +29,6 @@ management:
         include: health,info,gateway
 
 spring:
-  profiles: prod
   data:
     redis:
       host: ${REDISHOST}
