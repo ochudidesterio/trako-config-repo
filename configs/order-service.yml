@@ -3,11 +3,11 @@ server:
 
 spring:
   datasource:
-    url: ${DATABASE_URL}       # Railway PostgreSQL URL for orders
-    username: ${PGUSER}        # Railway PG username
-    password: ${PGPASSWORD}    # Railway PG password
+    url: ${DATABASE_URL}
+    username: ${PGUSER}
+    password: ${PGPASSWORD}
     driver-class-name: org.postgresql.Driver
-
+  
   jpa:
     hibernate:
       ddl-auto: update
@@ -16,20 +16,14 @@ spring:
       hibernate:
         dialect: org.hibernate.dialect.PostgreSQLDialect
         format_sql: true
-
+  
   kafka:
     bootstrap-servers: ${KAFKA_BOOTSTRAP_SERVERS}
     producer:
       key-serializer: org.apache.kafka.common.serialization.StringSerializer
       value-serializer: org.apache.kafka.common.serialization.StringSerializer
-    properties:
-      spring.json.add.type.headers: false
-      security.protocol: SASL_SSL
-      sasl.mechanism: SCRAM-SHA-256
-      sasl.jaas.config: >
-        org.apache.kafka.common.security.scram.ScramLoginModule required
-        username="${KAFKA_USERNAME}"
-        password="${KAFKA_PASSWORD}";
+      properties:
+        spring.json.add.type.headers: false
 
 eureka:
   client:
